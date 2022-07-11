@@ -1,0 +1,180 @@
+{
+  "_": {
+    "postman_id": "9c528732-b72a-4101-adae-064e49d3b082"
+  },
+  "item": [
+    {
+      "id": "5b3f7c11-dd2f-4608-abdc-364a3153237d",
+      "name": "Contract Tests",
+      "item": [
+        {
+          "id": "cbf39ecb-3e6b-424b-a05f-89de8157d8a2",
+          "name": "matches",
+          "item": [
+            {
+              "id": "76051990-7b71-40cb-b3ad-2d906d7a2660",
+              "name": "Get Match Details",
+              "request": {
+                "name": "Get Match Details",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "matches",
+                    ":match-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Match ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "consectetur do exerci",
+                      "key": "match-id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "response": [
+                {
+                  "_": {
+                    "postman_previewlanguage": "json"
+                  },
+                  "id": "aab6ac3d-4c86-4a78-a594-cdfb3da41418",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "matches",
+                        ":match-id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Match ID",
+                            "type": "text/plain"
+                          },
+                          "type": "any",
+                          "value": "consectetur do exerci",
+                          "key": "match-id"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"homeTeam\": \"Barcelona\",\n  \"awayTeam\": \"Real Madrid\",\n  \"championship\": \"UEFA Champions League\"\n}",
+                  "cookie": []
+                },
+                {
+                  "_": {
+                    "postman_previewlanguage": "json"
+                  },
+                  "id": "e9b3b234-f040-4e03-b17e-06f0b1186d30",
+                  "name": "404 response",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "matches",
+                        ":match-id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "(Required) Match ID",
+                            "type": "text/plain"
+                          },
+                          "type": "any",
+                          "value": "consectetur do exerci",
+                          "key": "match-id"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"not found\"\n}",
+                  "cookie": []
+                }
+              ],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6127e16b-7055-4ea8-9a14-97c2e5a79743",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// Validate status 2xx \npm.test(\"[GET]::/matches/:match-id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n",
+                      "// Validate if response header has matching content-type\npm.test(\"[GET]::/matches/:match-id - Content-Type is application/json\", function () {\n   pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n",
+                      "// Validate if response has JSON Body \npm.test(\"[GET]::/matches/:match-id - Response has JSON Body\", function () {\n    pm.response.to.have.jsonBody();\n});\n",
+                      "// Response Validation\nconst schema = {\"title\":\"Root Type for matches-data\",\"description\":\"Contains data about match\",\"type\":\"object\",\"properties\":{\"homeTeam\":{\"type\":\"string\"},\"awayTeam\":{\"type\":\"string\"},\"championship\":{\"type\":\"string\"}},\"example\":{\"homeTeam\":\"Barcelona\",\"awayTeam\":\"Real Madrid\",\"championship\":\"UEFA Champions League\"}}\n\n// Validate if response matches JSON schema \npm.test(\"[GET]::/matches/:match-id - Schema is valid\", function() {\n    pm.response.to.have.jsonSchema(schema,{unknownFormats: [\"int32\", \"int64\", \"float\", \"double\"]});\n});\n"
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://127.0.0.1:4010",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c528732-b72a-4101-adae-064e49d3b082",
+    "name": "Bets - Matches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Bets\n Email: bets@example.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Bets - Matches API
+  version: 2.0.0
+  contact:
+    name: Bets
+    email: bets@example.com
+  license:
+    name: MIT License
+    url: 'https://opensource.org/licenses/MIT'
+servers:
+  -
+    url: 'http://localhost:9999/api'
+    description: Development Environment
+  -
+    url: 'https://bets.api.com'
+    description: Production Environment
+paths:
+  '/matches/{match-id}':hgf
+    summary: Get information about match
+    get:
+      tags:
+        - matches
+      parameters:
+        -
+          name: match-id
+          description: Match ID
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/matches-data'
+              examples:
+                data:
+                  value:
+                    homeTeam: Barcelona
+                    awayTeam: Real Madrid
+                    championship: UEFA Champions League
+          description: 200 response
+        '404':
+          content:
+            application/json:
+              examples:
+                error:
+                  value:
+                    code: 404
+                    message: not found
+          description: 404 response
+      operationId: get-match-by-id
+      summary: Get Match Details
+components:
+  schemas:
+    matches-data:
+      title: Root Type for matches-data
+      description: Contains data about match
+      type: object
+      properties:
+        homeTeam:
+          type: string
+        awayTeam:
+          type: string
+        championship:
+          type: string
+      example:
+        homeTeam: Barcelona
+        awayTeam: Real Madrid
+        championship: UEFA Champions League
+tags:
+  -
+    name: matches
+    description: Everything about your Matches
