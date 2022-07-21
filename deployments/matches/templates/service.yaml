@@ -4,6 +4,7 @@ metadata:
   name: {{ include "matches.fullname" . }}
   annotations:
     konghq.com/plugins: prometheus-matches
+    ingress.kubernetes.io/service-upstream: "true"
   labels:
     {{- include "matches.labels" . | nindent 4 }}
 spec:
