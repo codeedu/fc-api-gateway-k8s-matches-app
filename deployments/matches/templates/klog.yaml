@@ -1,0 +1,11 @@
+{{- if .Values.kong.enabled -}}
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: matches-logs
+config:
+  host: fluentd.logs.svc.cluster.local
+  port: 24224
+  tls: false
+plugin: tcp-log
+{{end}}

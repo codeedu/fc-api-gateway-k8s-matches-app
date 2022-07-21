@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "matches.fullname" . }}
   annotations:
-    konghq.com/plugins: prometheus-matches
+    konghq.com/plugins: prometheus-matches,matches-logs
     ingress.kubernetes.io/service-upstream: "true"
   labels:
     {{- include "matches.labels" . | nindent 4 }}
